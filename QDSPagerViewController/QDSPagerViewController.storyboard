@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Pager View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="QDSPagerViewController" id="Y6W-OH-hqX" customClass="QDSPagerViewController" customModule="QDSPagerViewController" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zdy-1L-88R">
+                                <rect key="frame" x="0.0" y="44" width="414" height="60"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="BxE-28-j2d"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gfJ-dF-a2q">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Y6W-OH-hqX" id="2xh-7U-SVA"/>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="dmi-BN-Foh"/>
+                                </connections>
+                            </collectionView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u1x-07-oLY">
+                                <rect key="frame" x="0.0" y="104" width="414" height="758"/>
+                                <connections>
+                                    <segue destination="9tY-bX-9WH" kind="embed" identifier="ContainerPagerSegue" id="Zcf-jr-YuO"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="u1x-07-oLY" firstAttribute="top" secondItem="zdy-1L-88R" secondAttribute="bottom" id="6ZN-mZ-AzW"/>
+                            <constraint firstItem="zdy-1L-88R" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="9QT-1k-6Um"/>
+                            <constraint firstItem="zdy-1L-88R" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="CNh-0J-bgb"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="u1x-07-oLY" secondAttribute="bottom" id="GiT-nN-pxs"/>
+                            <constraint firstItem="u1x-07-oLY" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="TSc-ub-zXh"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="zdy-1L-88R" secondAttribute="trailing" id="XGY-Qs-oK3"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="u1x-07-oLY" secondAttribute="trailing" id="yxB-Lt-6WV"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="pagerCollectionView" destination="zdy-1L-88R" id="2ME-FF-xbI"/>
+                        <outlet property="pagerCollectionViewHeight" destination="BxE-28-j2d" id="Yka-gI-aSk"/>
+                        <outlet property="pagerContainerView" destination="u1x-07-oLY" id="O1v-KJ-qUg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139" y="125"/>
+        </scene>
+        <!--PagerUI Page View Controller-->
+        <scene sceneID="gXk-Os-ij1">
+            <objects>
+                <viewController storyboardIdentifier="QDSPagerUIPageViewController" id="9tY-bX-9WH" customClass="QDSPagerUIPageViewController" customModule="QDSPagerViewController" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zk2-wj-VsX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="758"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="jqK-wS-FfC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8jf-mU-W29" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="954" y="125"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
