@@ -37,6 +37,10 @@ open class QDSPagerViewController: UIViewController {
     
     private weak var qdsPagerDelegate : QDSPagerDelegate?
     
+    private weak var pageViewController: QDSPagerUIPageViewController?
+    
+    private var currentIndex: Int = 0
+    
     init(delegate: QDSPagerDelegate) {
         super.init(nibName: "QDSPagerViewController", bundle: nil)
         self.qdsPagerDelegate = delegate
@@ -56,6 +60,8 @@ open class QDSPagerViewController: UIViewController {
         if segue.identifier == "ContainerPagerSegue" {
             let pageVC = segue.destination as! QDSPagerUIPageViewController
             pageVC.delegate = self
+            pageVC.didMove(toParent: self)
+            self.pageViewController = pageVC
         }
     }
     
@@ -71,29 +77,29 @@ open class QDSPagerViewController: UIViewController {
             self.pagerCollectionViewHeight.constant = 0
         }
     }
+    
+    private func initPageViewController() {
+        
+    }
+    
+    private func updateUI(targetIndex: Int) {
+        if targetIndex == currentIndex { return }
+        let direction: UIPageViewController.NavigationDirection = currentIndex < targetIndex ? .forward : .reverse
+        guard let viewController = qdsPagerDelegate?.uiViewControllers[targetIndex] else { return }
+        self.pageViewController?.setViewControllers([viewController], direction: direction, animated: true)
+    }
 }
 
 extension QDSPagerViewController: UIPageViewControllerDelegate {
     
 }
 
-extension QDSPagerViewController: UIPageViewControllerDataSource {
+//MARK: - CollectionViewDelegate
+extension QDSPagerViewController: UICollectionViewDelegate {
     
-    public func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        
-        return nil
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.updateUI(targetIndex: indexPath.row)
     }
-    
-    public func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        
-        return nil
-    }
-    
-    public func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-        
-        return 0
-    }
-    
 }
 
 class QDSPagerUIPageViewController: UIPageViewController { }
